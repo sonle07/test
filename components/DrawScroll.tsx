@@ -11,7 +11,10 @@ export default function DrawScroll() {
 
   return (
     <>
-      <Drawer
+      <div>
+        <div style={{position: 'absolute', background: 'red', width: 300, height: 500}}><Button onClick={open}>Open drawer</Button></div>
+        <Drawer
+        style={{position: 'fixed', top: 0, background: '#fff'}}
         opened={opened}
         onClose={close}
         title="Header is sticky"
@@ -19,8 +22,7 @@ export default function DrawScroll() {
       >
         {content}
       </Drawer>
-
-      <Button onClick={open}>Open drawer</Button>
+      </div>
     </>
   );
 }
