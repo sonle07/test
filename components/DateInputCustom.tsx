@@ -1,13 +1,37 @@
 'use client'
-import { useState } from 'react';
 import { DatePickerInput } from '@mantine/dates';
+import { Controller, useForm } from 'react-hook-form';
 
 export default function DateInputCustom() {
-  const [value, setValue] = useState<Date | null>(null);
-  return (
+  const {
+      control,
+      setValue,
+      getValues,
+      setError,
+    } = useForm({
+      mode: 'onChange',
+    });
+  const validateDateInput = (
+    fieldName: string,
+    ) => {
+      if (!getValues(fieldName)) {
+        setError(fieldName, {
+          message: 'This field is required',
+          type: 'required',
+        });
+      }
+    };
+  return (<Controller
+              name="blockedUntilDate"
+              control={control}
+              render={({
+                field: { onChange, value },
+                fieldState: { error },
+              }) => (
+     <>
      <DatePickerInput
       value={value}
-      onChange={setValue}
+      onChange={(date) => onChange(date)}
       label="Date input"
       placeholder="Date input"
       maw={400}
@@ -22,7 +46,11 @@ export default function DateInputCustom() {
             msUserSelect: 'none',
         },
         }}
-        onKeyDown={(e) => e.preventDefault()}
+       onBlur={() => validateDateInput('blockedUntilDate')}
+       error={error?.type === 'required' && error?.message}
     />
+     </>
+  )}
+/>
   );
 }
