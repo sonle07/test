@@ -1,11 +1,19 @@
 'use client'
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { DateInput } from '@mantine/dates';
 
 export default function DateInputCustom() {
   const [value, setValue] = useState<Date | null>(null);
+  const inputRef = useRef(null);
+
+  const handleClick = () => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  };
   return (
     <DateInput
+    ref={inputRef}
       value={value}
       onChange={setValue}
       label="Date input"
@@ -22,7 +30,7 @@ export default function DateInputCustom() {
             msUserSelect: 'none',
         },
         }}
-        onKeyDown={(e) => e.preventDefault()}
+    onClick={handleClick}
     />
   );
 }
