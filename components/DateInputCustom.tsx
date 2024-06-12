@@ -22,7 +22,7 @@ export default function DateInputCustom() {
             msUserSelect: 'none',
         },
         }}
-    readOnly
+        onKeyDown={(e) => e.preventDefault()}
     />
   );
 }
