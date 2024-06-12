@@ -1,8 +1,9 @@
+"use client"
 import { useDisclosure } from '@mantine/hooks';
-import { Drawer, Button, ScrollArea } from '@mantine/core';
+import { Drawer, Group, Button, ScrollArea } from '@mantine/core';
 
 export default function DrawScroll() {
-  const [opened, { open, close }] = useDisclosure(false);
+   const [opened, { open, close }] = useDisclosure(false);
 
   const content = Array(100)
     .fill(0)
