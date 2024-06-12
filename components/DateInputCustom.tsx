@@ -12,6 +12,17 @@ export default function DateInputCustom() {
       placeholder="Date input"
       maw={400}
       mx="auto"
+      styles={{
+        input: {
+            caretColor: 'transparent',
+            userSelect: 'none',
+            touchAction: 'manipulation',
+            WebkitUserSelect: 'none',
+            MozUserSelect: 'none',
+            msUserSelect: 'none',
+        },
+        }}
+    readOnly
     />
   );
 }
